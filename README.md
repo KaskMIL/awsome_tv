@@ -1,0 +1,58 @@
+![](https://img.shields.io/badge/Microverse-blueviolet)
+
+# Project Name
+
+> Description the project.
+
+## Built With
+
+- HTML CSS Javascript
+- Linters and Webpack
+
+## [Live Demo](https://kaskmil.github.io/toDo-list/)
+
+
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+    NodeJS
+
+### Setup
+
+    1. git clone https://github.com/KaskMIL/toDo-list.git
+    2. cd Todo_list
+
+### Install
+
+    npm install
+
+### Usage
+
+    npm run dev
+
+
+## Authors
+
+👤 **Tom Milanesi**
+
+- GitHub: [@TomMilanesi](https://github.com/KaskMIL)
+- Twitter: [@TomMilanesi](https://twitter.com/TomasMilanesi)
+- LinkedIn: [Tomas Milanesi](https://www.linkedin.com/in/tomas-milanesi-3427bb185/)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+
+## 📝 License
+
+This project is [MIT](./MIT.md) licensed.
