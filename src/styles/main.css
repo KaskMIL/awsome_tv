@@ -19,11 +19,11 @@ body{
   font-family: 'Poppins',sans-serif;
 }
 header{
-  height: 6rem;
+  padding: 2rem 0;
   background-color: var(--dark-blue);
   border-bottom: var(--mild-blue);
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-around;
   
 }
@@ -35,7 +35,7 @@ header{
 }
 .nav{
   display: flex;
-  align-items: flex-start ;
+  align-items: baseline ;
   justify-content: space-around;
   column-gap: 1rem;
   margin-left: 1rem;
@@ -51,10 +51,12 @@ header{
    font-size: 1rem;
    color:var(--text-white);
    text-decoration: none;
-   
- 
 }
-#search{
-/* padding: 0.5rem; */
 
+.nav-item:hover {
+  text-decoration: underline;
+}
+
+#search{
+  padding: 0.2rem;
 }
