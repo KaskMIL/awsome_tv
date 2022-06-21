@@ -8,4 +8,53 @@
   --blue-blue: #2A4494;
   --light-blue: #4EA5D9;
   --water-blue: #44CFCB;
+  --text-white:#fff;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Poppins',sans-serif;
+}
+header{
+  height: 6rem;
+  background-color: var(--dark-blue);
+  border-bottom: var(--mild-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+}
+.logo{
+  font-size: 1.5rem;
+  color: var(--text-white);
+  text-decoration: none;
+  text-transform: capitalize;
+}
+.nav{
+  display: flex;
+  align-items: flex-start ;
+  justify-content: space-around;
+  column-gap: 1rem;
+  margin-left: 1rem;
+
+}
+.nav ul{
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  column-gap: 1rem;
+}
+.nav-item a{
+   font-size: 1rem;
+   color:var(--text-white);
+   text-decoration: none;
+   
+ 
+}
+#search{
+/* padding: 0.5rem; */
+
 }
