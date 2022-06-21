@@ -67,6 +67,30 @@ header {
   padding: 0.2rem;
 }
 
+/* tv show container */
+#tv-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0.5rem;
+  background-color: var(--text-white);
+
+}
+.card{
+  background-color:var(--mild-blue);
+   width: 100%;
+  color: var(--text-white);
+}
+.image{
+  width: 95%;
+  padding: 1rem;
+  position: relative;
+}
+/* .show-name{
+  position: absolute;
+  top:50%;
+} */
+
+
 /* Footer */
 footer {
   text-align: center;
