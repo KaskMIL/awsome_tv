@@ -1,3 +1,3 @@
- export const getData =(url)=>fetch(url).then(response=>{
-    return  response.json();
- })
+const getData = (url) => fetch(url).then((response) => response.json());
+
+export default getData;
