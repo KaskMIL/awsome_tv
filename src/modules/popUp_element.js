@@ -79,4 +79,20 @@ const setCord = (parentNode, node) => {
   node.style.top = `${coord.top - 90}px`;
 };
 
-export { createPopUp, clearPopup, setCord };
+const setPopup = (node) => {
+  node.addEventListener('click', (e) => {
+    // Create pop-up
+    if (e.target.nodeName === 'BUTTON') {
+      const parentId = parseInt(e.target.parentNode.id, 10);
+      const popUp = createPopUp(parentId);
+      setCord(e.target.parentNode, popUp);
+      node.appendChild(popUp);
+    }
+    // Delete pop-up
+    if (e.target.classList.contains('icon') || e.target.nodeName === 'path') {
+      clearPopup();
+    }
+  });
+};
+
+export default setPopup;
