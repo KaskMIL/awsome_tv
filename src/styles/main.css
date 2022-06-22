@@ -67,6 +67,15 @@ header {
   padding: 0.2rem;
 }
 
+/* pop-up */
+.pop-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--dark-blue);
+  width: 500px;
+}
+
 /* Footer */
 footer {
   text-align: center;
