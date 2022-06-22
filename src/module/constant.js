@@ -1,6 +1,5 @@
-const API_URL ='https://api.tvmaze.com/shows';
+const API_URL = 'https://api.tvmaze.com/shows';
 
- const tvWrapper = document.getElementById('tv-container');
+const tvWrapper = document.getElementById('tv-container');
 
-
- export {tvWrapper,API_URL}
+export { tvWrapper, API_URL };
