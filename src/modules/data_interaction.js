@@ -5,6 +5,7 @@ const getData = async (url) => {
   return data;
 };
 
+// Function to create an item and set a like to them
 const setLike = async(itemId) => {
   const result = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/lgCIHcqWzTyEZ0MPUBMA/likes/', {
     method: 'POST',
@@ -19,6 +20,18 @@ const setLike = async(itemId) => {
   return response;
 }
 
+const getLikes = async() => {
+  const result = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/lgCIHcqWzTyEZ0MPUBMA/likes/', {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  const response = await result.json();
+  return response;
+}
+
+// Function 
 const setComment = async(itemId, userName, userComment) => {
   const result = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/lgCIHcqWzTyEZ0MPUBMA/comments/', {
     method:'POST',
@@ -42,19 +55,14 @@ const getComments = async(itemId) => {
       'Content-type': 'application/json; charset=UTF-8',
     },
     });
-    const response = result.json();
-    return response;
+    return await result.json();
 }
 
-const getLikes = async() => {
-  const result = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/lgCIHcqWzTyEZ0MPUBMA/likes/', {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  });
-  const response = await result.json();
-  return response;
+const displayComments = (itemId) => {
+  const data =  getComments(itemId);
+  data.then((element) => {
+    console.log(element);
+  })
 }
 
-export { getData, setLike, getLikes, setComment, getComments };
+export { getData, setLike, getLikes, setComment, getComments, displayComments };
