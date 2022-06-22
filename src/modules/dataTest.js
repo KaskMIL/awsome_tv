@@ -5,4 +5,13 @@ const getData = async (url) => {
   return data;
 };
 
-export { getData };
+const setLike = async (url,id) => {
+  const result = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({item_id: id})
+  });
+  const response = await result.json();
+  return response;
+}
+
+export { getData, setLike };
