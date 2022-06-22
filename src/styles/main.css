@@ -9,7 +9,7 @@
   --light-blue: #4ea5d9;
   --water-blue: #44cfcb;
   --text-white: #fff;
-  --gold: #DBAE25;
+  --gold: #dbae25;
   --heart-red: rgb(223, 2, 2);
 }
 
@@ -81,11 +81,12 @@ main {
   align-items: center;
   background-color: var(--dark-blue);
   padding: 1.5rem;
-  width: 350px;
+  max-width: 80vw;
   color: var(--text-white);
-  left: 25%;
-  top: 100px;
   border-radius: 1rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 .pop-up .icon {
@@ -94,10 +95,22 @@ main {
   font-size: 1.5rem;
 }
 
+.pop-up img {
+  width: 300px;
+  height: auto;
+}
+
 .pop-up h2 {
   font-weight: 600;
   padding: 0.5rem 0;
   margin: 0;
+}
+
+/* mediaquerys */
+@media screen and (min-width: 758px) {
+  .pop-up {
+    max-width: 50vw;
+  }
 }
 
 .details {

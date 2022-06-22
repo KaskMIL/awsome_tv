@@ -1,7 +1,6 @@
-import { getData } from './data_interaction.js'
+import { getData } from './data_interaction.js';
 
 const createPopUp = (id) => {
-
   // Declare and create elements
   const popSection = document.createElement('section');
   const crossIcon = document.createElement('i');
@@ -16,7 +15,7 @@ const createPopUp = (id) => {
   const langUl = document.createElement('ul');
   const langLi = document.createElement('li');
   const artSummary = document.createElement('art');
-  
+
   // set classes, id's and attributes
   popSection.classList.add('pop-up');
   crossIcon.classList.add('fa-solid', 'fa-xmark', 'icon');
@@ -29,18 +28,18 @@ const createPopUp = (id) => {
   // set data from API and common data
   genreTitle.innerHTML = 'Genres:';
   langTitle.innerHTML = 'Languages:';
-  getData(`https://api.tvmaze.com/shows`).then((data) => {
-    data.forEach(element => {
-      if(element.id === id) {
+  getData('https://api.tvmaze.com/shows').then((data) => {
+    data.forEach((element) => {
+      if (element.id === id) {
         img.setAttribute('src', `${element.image.medium}`);
         showTitle.innerHTML = `${element.name}`;
         artSummary.innerHTML = `${element.summary}`;
         langLi.innerHTML = `${element.language}`;
-        element.genres.forEach(genre => {
+        element.genres.forEach((genre) => {
           const li = document.createElement('li');
           li.innerHTML = genre;
           genreUl.appendChild(li);
-        })
+        });
       }
     });
   });
@@ -61,12 +60,23 @@ const createPopUp = (id) => {
 
   // Return pop-up node
   return popSection;
-
-}
+};
 
 const clearPopup = () => {
   const popup = document.querySelector('.pop-up');
   popup.remove();
-}
+};
 
-export { createPopUp, clearPopup };
+const getCord = (node) => {
+  const rect = node.getBoundingClientRect();
+  return {
+    top: rect.top + window.scrollY,
+  };
+};
+
+const setCord = (parentNode, node) => {
+  const coord = getCord(parentNode);
+  node.style.top = `${coord.top - 90}px`;
+};
+
+export { createPopUp, clearPopup, setCord };

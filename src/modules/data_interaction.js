@@ -6,7 +6,7 @@ const getData = async (url) => {
 };
 
 // Function to create an item and set a like to them
-const setLike = async(itemId) => {
+const setLike = async (itemId) => {
   const result = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/lgCIHcqWzTyEZ0MPUBMA/likes/', {
     method: 'POST',
     body: JSON.stringify({
@@ -18,9 +18,9 @@ const setLike = async(itemId) => {
   });
   const response = await result.json();
   return response;
-}
+};
 
-const getLikes = async() => {
+const getLikes = async () => {
   const result = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/lgCIHcqWzTyEZ0MPUBMA/likes/', {
     method: 'GET',
     headers: {
@@ -29,12 +29,12 @@ const getLikes = async() => {
   });
   const response = await result.json();
   return response;
-}
+};
 
-// Function 
-const setComment = async(itemId, userName, userComment) => {
+// Function
+const setComment = async (itemId, userName, userComment) => {
   const result = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/lgCIHcqWzTyEZ0MPUBMA/comments/', {
-    method:'POST',
+    method: 'POST',
     body: JSON.stringify({
       item_id: itemId,
       username: `${userName}`,
@@ -46,25 +46,25 @@ const setComment = async(itemId, userName, userComment) => {
   });
   const response = await result.json();
   return response;
-}
+};
 
-const getComments = async(itemId) => {
+const getComments = async (itemId) => {
   const result = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/lgCIHcqWzTyEZ0MPUBMA/comments?item_id=${itemId}`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
-    });
-    return await result.json();
-}
+  });
+  return result.json();
+};
 
 const displayComments = (itemId) => {
-  const data =  getComments(itemId);
+  const data = getComments(itemId);
   data.then((element) => {
-    element.forEach(info => {
-      console.log(info.username)
-    });
-  })
-}
+    element.forEach((info) => info);
+  });
+};
 
-export { getData, setLike, getLikes, setComment, getComments, displayComments };
+export {
+  getData, setLike, getLikes, setComment, getComments, displayComments,
+};
