@@ -122,6 +122,16 @@ header {
   color: var(--text-white);
 }
 
+.comment-btn {
+  width: 50%;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--dark-blue);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 /* Footer */
 footer {
   text-align: center;
