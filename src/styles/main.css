@@ -9,6 +9,7 @@
   --light-blue: #4ea5d9;
   --water-blue: #44cfcb;
   --text-white: #fff;
+  --heart-red: rgb(223, 2, 2);
 }
 
 * {
@@ -65,6 +66,70 @@ header {
 
 #search {
   padding: 0.2rem;
+}
+
+/* tv show container */
+#tv-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0.5rem;
+  background-color: var(--text-white);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--mild-blue);
+  max-width: 90%;
+  text-align: center;
+  backdrop-filter: blur(7px);
+  border-radius: 1rem;
+  overflow: hidden;
+  min-height: 500px;
+  margin-top: 1.5rem;
+}
+
+.image {
+  transition: all 0.5s ease-in-out;
+  border-radius: 1rem 1rem 0 0;
+  height: 400px;
+  background-color: #0005;
+}
+
+.show-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.show-name {
+  color: var(--text-white);
+  font-size: 1.1rem;
+}
+
+.heart {
+  color: var(--heart-red);
+  font-size: 1.5rem;
+}
+
+.likes-num > span {
+  color: var(--heart-red);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.likes-num {
+  color: var(--text-white);
+}
+
+.comment-btn {
+  width: 50%;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--dark-blue);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 /* Footer */
