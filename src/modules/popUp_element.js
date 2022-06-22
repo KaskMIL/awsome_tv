@@ -64,5 +64,9 @@ const createPopUp = (id) => {
 
 }
 
+const clearPopup = () => {
+  const popup = document.querySelector('.pop-up');
+  popup.remove();
+}
 
-export {createPopUp};
+export { createPopUp, clearPopup };
