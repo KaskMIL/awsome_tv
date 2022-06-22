@@ -14,3 +14,6 @@ const main = document.querySelector('.main');
 main.appendChild(createPopUp(5))
 
 
+import retriveAllData from './module/dom-utils.js';
+
+window.onload = () => retriveAllData();
