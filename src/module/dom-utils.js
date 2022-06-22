@@ -12,10 +12,12 @@ const displayAllData = (data) => {
             <div class="like">
             <i class="fa fa-heart heart" aria-hidden="true"></i>
             <div class="likes-num">
-               <span> ${data.length}</span> likes
+               <span> ${data.length}</span> Likes
             </div>
             </div>
+ 
            </div>
+           <button  type="button" class="comment-btn" > Comments </button>
          </div>
          `;
   });
