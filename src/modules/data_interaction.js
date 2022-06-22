@@ -61,7 +61,9 @@ const getComments = async(itemId) => {
 const displayComments = (itemId) => {
   const data =  getComments(itemId);
   data.then((element) => {
-    console.log(element);
+    element.forEach(info => {
+      console.log(info.username)
+    });
   })
 }
 

@@ -5,5 +5,3 @@ import { getData, setLike, getLikes, setComment, getComments, displayComments } 
 const mainUrl = 'https://api.tvmaze.com/shows';
 
 const appId = 'YdXgSyeK6d2I6qrCBe1g/';
-
-
