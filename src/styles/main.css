@@ -9,6 +9,7 @@
   --light-blue: #4ea5d9;
   --water-blue: #44cfcb;
   --text-white: #fff;
+  --gold: #DBAE25;
 }
 
 * {
@@ -78,11 +79,12 @@ main {
   flex-direction: column;
   align-items: center;
   background-color: var(--dark-blue);
-  padding: 1rem;
+  padding: 1.5rem;
   width: 350px;
   color: var(--text-white);
   left: 25%;
   top: 100px;
+  border-radius: 1rem;
 }
 
 .pop-up .icon {
@@ -97,54 +99,38 @@ main {
   margin: 0;
 }
 
-.pop-up h3 {
+.details {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
   font-weight: 400;
-  padding: 0 0 0.5rem 0;
-  margin: 0;
-  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
 
-.comments {
-  padding: 0.5rem 1rem;
+.genre,
+.language {
+  display: flex;
+  column-gap: 0.7rem;
 }
 
-.comments ul {
+.details h3 {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--gold);
+}
+
+.details ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.comments ul li {
-  display: grid;
-  grid-template-columns: 70px 90px 1fr;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
-}
-
-.userComment {
+.summary {
   font-weight: 200;
-  font-size: 0.8rem;
-}
-
-.user,
-.date {
-  font-weight: 300;
-  font-size: 0.7rem;
-}
-
-.comment-art {
-  width: 50%;
-}
-
-.form-user {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
-}
-
-.form-user .submitBtn {
-  align-self: flex-start;
-  padding: 0rem 1rem;
+  font-size: 0.9rem;
+  text-align: justify;
+  color: var(--gold);
 }
 
 /* Footer */
