@@ -1,4 +1,5 @@
 import { getData } from './data_interaction.js';
+import { getComments } from './data_interaction.js';
 
 const createPopUp = (id) => {
   // Declare and create elements
@@ -18,7 +19,7 @@ const createPopUp = (id) => {
   const commentContainer = document.createElement('div');
   const nameComment = document.createElement('h4');
   const dateComment = document.createElement('h5');
-  const comment = document.createElement('p');
+  const commentUser = document.createElement('p');
 
   // set classes, id's and attributes
   popSection.classList.add('pop-up');
@@ -28,8 +29,12 @@ const createPopUp = (id) => {
   divGenre.classList.add('genre');
   divLang.classList.add('languages');
   artSummary.classList.add('summary');
+  artComments.classList.add('comments');
+  commentContainer.classList.add('commentContainer');
+  
 
   // set data from API and common data
+  commentTitle.innerHTML = 'Comments'
   getData('https://api.tvmaze.com/shows').then((data) => {
     data.forEach((element) => {
       if (element.id === id) {
@@ -44,6 +49,13 @@ const createPopUp = (id) => {
         });
       }
     });
+    getComments(id).then((data) => {
+      data.forEach((comment) => {
+        nameComment.innerHTML = `${comment.username}`;
+        dateComment.innerHTML = `${comment.creation_date}`;
+        commentUser.innerHTML = `${comment.comment}`;
+      })
+    })
   });
 
   // Append elements
@@ -55,8 +67,15 @@ const createPopUp = (id) => {
   divLang.appendChild(langUl);
   artDetails.appendChild(divGenre);
   artDetails.appendChild(divLang);
+  commentContainer.appendChild(nameComment);
+  commentContainer.appendChild(dateComment);
+  commentContainer.appendChild(commentUser);
+  artComments.appendChild(commentTitle);
+  artComments.appendChild(commentContainer);
   popSection.appendChild(artDetails);
   popSection.appendChild(artSummary);
+  popSection.appendChild(artComments);
+  
 
   // Return pop-up node
   return popSection;

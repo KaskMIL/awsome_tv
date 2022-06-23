@@ -171,6 +171,7 @@ main {
 .comments {
   padding: 1rem 0;
   border-top: 0.1rem solid rgb(79, 79, 79);
+  width: 100%;
 }
 
 .comments h3 {
