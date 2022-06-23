@@ -6,6 +6,7 @@ import { getData, getComments, setComment } from './modules/data_interaction.js'
 
 const main = document.querySelector('.main');
 
+
 window.onload = () => retriveAllData().then(() => {
   countShows();
 });

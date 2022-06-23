@@ -1,7 +1,11 @@
 import {
-  getData,
+  setComment,
   getComments
 } from './data_interaction.js';
+import {
+  getData
+} from './api-util.js';
+
 
 const createPopUp = (id) => {
   // Declare and create elements
@@ -27,6 +31,7 @@ const createPopUp = (id) => {
 
   // set classes, id's and attributes
   popSection.classList.add('pop-up');
+  popSection.setAttribute('id', `${id}`)
   crossIcon.classList.add('fa-solid', 'fa-xmark', 'icon');
   img.setAttribute('alt', 'Tv-show image');
   artDetails.classList.add('details');
@@ -62,13 +67,15 @@ const createPopUp = (id) => {
       }
     });
   });
-  artComments.appendChild(commentTitle);
   getComments(id).then((data) => {
-    if(data.error.status === 400) {
+    if(data.error){
+      artComments.appendChild(commentTitle);
     } else {
+      artComments.appendChild(commentTitle);
       data.forEach((comment) => {
-        artComments.appendChild(createComment(comment.username, comment.creation_date, comment.comment));
-      })
+        const element = createComment(comment.username, comment.creation_date, comment.comment);
+        artComments.appendChild(element);
+      }) 
     }
   });
 
@@ -119,6 +126,15 @@ const clearPopup = () => {
   popup.remove();
 };
 
+const updateComments = (id, nodeContainer) => {
+  getComments(id).then((data) => {
+    data.forEach((comment) => {
+      const element = createComment(comment.username, comment.creation_date, comment.comment);
+      nodeContainer.appendChild(element);
+    })
+  })
+}
+
 const getCord = (node) => {
   const rect = node.getBoundingClientRect();
   return {
@@ -131,11 +147,12 @@ const setCord = (parentNode, node) => {
   node.style.top = `${coord.top - 90}px`;
 };
 
-const setPopup = (node) => {
+const setPopup = async (node) => {
   node.addEventListener('click', (e) => {
+    e.preventDefault()
+    const parentId = parseInt(e.target.parentNode.id, 10);
     // Create pop-up
-    if (e.target.nodeName === 'BUTTON') {
-      const parentId = parseInt(e.target.parentNode.id, 10);
+    if (e.target.nodeName === 'BUTTON' && e.target.classList.contains('comment-btn')) {
       const popUp = createPopUp(parentId);
       setCord(e.target.parentNode, popUp);
       node.appendChild(popUp);
@@ -143,6 +160,25 @@ const setPopup = (node) => {
     // Delete pop-up
     if (e.target.classList.contains('icon') || e.target.nodeName === 'path') {
       clearPopup();
+    }
+    // Set new comment
+    if (e.target.id === 'addBtn') {
+      const parentid = e.target.parentNode.parentNode.parentNode.id;
+      const userName = document.getElementById('userInput');
+      const userComment = document.getElementById('commentInput');
+      const commentContainer = document.querySelector('.comments');
+      const comments = document.querySelectorAll('.commentContainer');
+      if (userName.value && userComment.value) {
+        setComment(parentid, userName.value, userComment.value).then(() => {
+          comments.forEach(element => {
+          element.remove()
+        });
+        updateComments(parentid, commentContainer)
+        })
+        
+      }
+      userName.value = '';
+      userComment.value = '';
     }
   });
 };
