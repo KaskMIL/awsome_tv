@@ -1,5 +1,5 @@
 import { API_URL, tvWrapper } from './constant.js';
-import getData from './api-util.js';
+import { getData } from './api-util.js';
 
 const displayAllData = (data) => {
   data.forEach((element) => {

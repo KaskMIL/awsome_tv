@@ -1,4 +1,4 @@
-import { getData } from './data_interaction.js';
+import { getData } from './api-util.js';
 
 const createPopUp = (id) => {
   // Declare and create elements
