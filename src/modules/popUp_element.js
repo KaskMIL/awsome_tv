@@ -1,4 +1,4 @@
-import { getData } from './api-util.js';
+import { getData, getComments } from './data_interaction.js';
 
 const createPopUp = (id) => {
   // Declare and create elements
@@ -8,13 +8,17 @@ const createPopUp = (id) => {
   const showTitle = document.createElement('h2');
   const artDetails = document.createElement('article');
   const divGenre = document.createElement('div');
-  const genreTitle = document.createElement('h3');
   const genreUl = document.createElement('ul');
   const divLang = document.createElement('div');
-  const langTitle = document.createElement('h3');
   const langUl = document.createElement('ul');
   const langLi = document.createElement('li');
   const artSummary = document.createElement('art');
+  const artComments = document.createElement('article');
+  const commentTitle = document.createElement('h3');
+  const commentContainer = document.createElement('div');
+  const nameComment = document.createElement('h4');
+  const dateComment = document.createElement('h5');
+  const commentUser = document.createElement('p');
 
   // set classes, id's and attributes
   popSection.classList.add('pop-up');
@@ -24,10 +28,11 @@ const createPopUp = (id) => {
   divGenre.classList.add('genre');
   divLang.classList.add('languages');
   artSummary.classList.add('summary');
+  artComments.classList.add('comments');
+  commentContainer.classList.add('commentContainer');
 
   // set data from API and common data
-  genreTitle.innerHTML = 'Genres:';
-  langTitle.innerHTML = 'Languages:';
+  commentTitle.innerHTML = 'Comments';
   getData('https://api.tvmaze.com/shows').then((data) => {
     data.forEach((element) => {
       if (element.id === id) {
@@ -42,21 +47,32 @@ const createPopUp = (id) => {
         });
       }
     });
+    getComments(id).then((data) => {
+      data.forEach((comment) => {
+        nameComment.innerHTML = `${comment.username}`;
+        dateComment.innerHTML = `${comment.creation_date}`;
+        commentUser.innerHTML = `${comment.comment}`;
+      });
+    });
   });
 
   // Append elements
   popSection.appendChild(crossIcon);
   popSection.appendChild(img);
   popSection.appendChild(showTitle);
-  divGenre.appendChild(genreTitle);
   divGenre.appendChild(genreUl);
-  divLang.appendChild(langTitle);
   langUl.appendChild(langLi);
   divLang.appendChild(langUl);
   artDetails.appendChild(divGenre);
   artDetails.appendChild(divLang);
+  commentContainer.appendChild(nameComment);
+  commentContainer.appendChild(dateComment);
+  commentContainer.appendChild(commentUser);
+  artComments.appendChild(commentTitle);
+  artComments.appendChild(commentContainer);
   popSection.appendChild(artDetails);
   popSection.appendChild(artSummary);
+  popSection.appendChild(artComments);
 
   // Return pop-up node
   return popSection;
