@@ -1,5 +1,4 @@
-import { getData } from './data_interaction.js';
-import { getComments } from './data_interaction.js';
+import { getData, getComments } from './data_interaction.js';
 
 const createPopUp = (id) => {
   // Declare and create elements
@@ -31,10 +30,9 @@ const createPopUp = (id) => {
   artSummary.classList.add('summary');
   artComments.classList.add('comments');
   commentContainer.classList.add('commentContainer');
-  
 
   // set data from API and common data
-  commentTitle.innerHTML = 'Comments'
+  commentTitle.innerHTML = 'Comments';
   getData('https://api.tvmaze.com/shows').then((data) => {
     data.forEach((element) => {
       if (element.id === id) {
@@ -54,8 +52,8 @@ const createPopUp = (id) => {
         nameComment.innerHTML = `${comment.username}`;
         dateComment.innerHTML = `${comment.creation_date}`;
         commentUser.innerHTML = `${comment.comment}`;
-      })
-    })
+      });
+    });
   });
 
   // Append elements
@@ -75,7 +73,6 @@ const createPopUp = (id) => {
   popSection.appendChild(artDetails);
   popSection.appendChild(artSummary);
   popSection.appendChild(artComments);
-  
 
   // Return pop-up node
   return popSection;

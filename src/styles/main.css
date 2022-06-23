@@ -93,7 +93,7 @@ main {
   left: 0;
   right: 0;
   margin: 0 auto;
-  box-shadow: -1px 5px 13px 6px rgba(0,0,0,0.75);
+  box-shadow: -1px 5px 13px 6px rgba(0, 0, 0, 0.75);
 }
 
 .pop-up .icon {
@@ -145,11 +145,10 @@ main {
 .details ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 1rem;
   display: flex;
   align-items: flex-start;
   column-gap: 1rem;
-  padding: 0 1rem;
 }
 
 .details ul li {
@@ -203,7 +202,6 @@ main {
 
 .commentContainer p {
   font-weight: 300;
-  
   margin: 0;
 }
 

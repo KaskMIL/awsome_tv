@@ -33,14 +33,4 @@ const getComments = async (itemId) => {
   return result.json();
 };
 
-// Function to display comments
-const displayComments = (itemId) => {
-  const data = getComments(itemId);
-  data.then((element) => {
-    element.forEach((info) => console.log(info));
-  });
-};
-
-export {
-  getData, setComment, getComments, displayComments,
-};
+export { getData, setComment, getComments };
