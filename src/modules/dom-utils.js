@@ -2,6 +2,13 @@ import { API_URL, tvWrapper, INV_LIKE_URL } from './constant.js';
 import { getData, postData } from './api-util.js';
 import setPopup from './popUp_element.js';
 
+export const countShows = () => {
+  const counterSpan = document.getElementById('show-counter');
+  getData(API_URL).then((res) => {
+    counterSpan.textContent = `(${res.length})`;
+  });
+};
+
 export const displayAllData = (shows) => {
   shows.forEach((show) => {
     const cardDiv = document.createElement('div');
