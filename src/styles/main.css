@@ -168,7 +168,7 @@ main {
 
 /* Comments */
 .comments {
-  padding: 1rem 0;
+  padding: 1rem 0 0 0;
   border-top: 0.1rem solid rgb(79, 79, 79);
   width: 100%;
 }
@@ -183,6 +183,7 @@ main {
   border: 0.1rem solid var(--text-white);
   border-radius: 1rem;
   padding: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .commentContainer h4 {

@@ -1,4 +1,7 @@
-import { getData, getComments } from './data_interaction.js';
+import {
+  getData,
+  getComments
+} from './data_interaction.js';
 
 const createPopUp = (id) => {
   // Declare and create elements
@@ -12,13 +15,9 @@ const createPopUp = (id) => {
   const divLang = document.createElement('div');
   const langUl = document.createElement('ul');
   const langLi = document.createElement('li');
-  const artSummary = document.createElement('art');
+  const artSummary = document.createElement('article');
   const artComments = document.createElement('article');
   const commentTitle = document.createElement('h3');
-  const commentContainer = document.createElement('div');
-  const nameComment = document.createElement('h4');
-  const dateComment = document.createElement('h5');
-  const commentUser = document.createElement('p');
   const artAddComment = document.createElement('article');
   const addTitle = document.createElement('h3');
   const form = document.createElement('form');
@@ -35,7 +34,6 @@ const createPopUp = (id) => {
   divLang.classList.add('languages');
   artSummary.classList.add('summary');
   artComments.classList.add('comments');
-  commentContainer.classList.add('commentContainer');
   artAddComment.classList.add('addComment');
   addInput.setAttribute('id', 'userInput');
   addInput.setAttribute('type', 'text');
@@ -47,7 +45,7 @@ const createPopUp = (id) => {
 
   // set data from API and common data
   commentTitle.innerHTML = 'Comments';
-  addTitle.innerHTML = 'Comments';
+  addTitle.innerHTML = 'Add a comment!';
   addButton.innerHTML = 'Submit';
   getData('https://api.tvmaze.com/shows').then((data) => {
     data.forEach((element) => {
@@ -64,12 +62,14 @@ const createPopUp = (id) => {
       }
     });
   });
+  artComments.appendChild(commentTitle);
   getComments(id).then((data) => {
-    data.forEach((comment) => {
-      nameComment.innerHTML = `${comment.username}`;
-      dateComment.innerHTML = `${comment.creation_date}`;
-      commentUser.innerHTML = `${comment.comment}`;
-    });
+    if(data.error.status === 400) {
+    } else {
+      data.forEach((comment) => {
+        artComments.appendChild(createComment(comment.username, comment.creation_date, comment.comment));
+      })
+    }
   });
 
   // Append elements
@@ -81,11 +81,6 @@ const createPopUp = (id) => {
   divLang.appendChild(langUl);
   artDetails.appendChild(divGenre);
   artDetails.appendChild(divLang);
-  commentContainer.appendChild(nameComment);
-  commentContainer.appendChild(dateComment);
-  commentContainer.appendChild(commentUser);
-  artComments.appendChild(commentTitle);
-  artComments.appendChild(commentContainer);
   form.appendChild(addInput);
   form.appendChild(addText);
   form.appendChild(addButton);
@@ -95,10 +90,29 @@ const createPopUp = (id) => {
   popSection.appendChild(artSummary);
   popSection.appendChild(artComments);
   popSection.appendChild(artAddComment);
-  
+
   // Return pop-up node
   return popSection;
 };
+
+const createComment = (user, date, message) => {
+  // Article variables
+  const commentContainer = document.createElement('div');
+  const nameComment = document.createElement('h4');
+  const dateComment = document.createElement('h5');
+  const commentUser = document.createElement('p');
+  // Variables clsses
+  commentContainer.classList.add('commentContainer');
+  // Set content
+  nameComment.innerHTML = `${user}`;
+  dateComment.innerHTML = `${date}`;
+  commentUser.innerHTML = `${message}`;
+  // Create element
+  commentContainer.appendChild(nameComment);
+  commentContainer.appendChild(dateComment);
+  commentContainer.appendChild(commentUser);
+  return commentContainer;
+}
 
 const clearPopup = () => {
   const popup = document.querySelector('.pop-up');
