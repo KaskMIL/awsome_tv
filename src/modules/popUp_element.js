@@ -19,6 +19,12 @@ const createPopUp = (id) => {
   const nameComment = document.createElement('h4');
   const dateComment = document.createElement('h5');
   const commentUser = document.createElement('p');
+  const artAddComment = document.createElement('article');
+  const addTitle = document.createElement('h3');
+  const form = document.createElement('form');
+  const addInput = document.createElement('input');
+  const addText = document.createElement('textarea');
+  const addButton = document.createElement('button');
 
   // set classes, id's and attributes
   popSection.classList.add('pop-up');
@@ -30,9 +36,19 @@ const createPopUp = (id) => {
   artSummary.classList.add('summary');
   artComments.classList.add('comments');
   commentContainer.classList.add('commentContainer');
+  artAddComment.classList.add('addComment');
+  addInput.setAttribute('id', 'userInput');
+  addInput.setAttribute('type', 'text');
+  addInput.setAttribute('placeholder', 'name');
+  addText.setAttribute('id', 'commentInput');
+  addText.setAttribute('name', 'comment');
+  addText.setAttribute('placeholder', 'Leave a omment!');
+  addButton.setAttribute('id', 'addBtn');
 
   // set data from API and common data
   commentTitle.innerHTML = 'Comments';
+  addTitle.innerHTML = 'Comments';
+  addButton.innerHTML = 'Submit';
   getData('https://api.tvmaze.com/shows').then((data) => {
     data.forEach((element) => {
       if (element.id === id) {
@@ -47,12 +63,12 @@ const createPopUp = (id) => {
         });
       }
     });
-    getComments(id).then((data) => {
-      data.forEach((comment) => {
-        nameComment.innerHTML = `${comment.username}`;
-        dateComment.innerHTML = `${comment.creation_date}`;
-        commentUser.innerHTML = `${comment.comment}`;
-      });
+  });
+  getComments(id).then((data) => {
+    data.forEach((comment) => {
+      nameComment.innerHTML = `${comment.username}`;
+      dateComment.innerHTML = `${comment.creation_date}`;
+      commentUser.innerHTML = `${comment.comment}`;
     });
   });
 
@@ -70,9 +86,16 @@ const createPopUp = (id) => {
   commentContainer.appendChild(commentUser);
   artComments.appendChild(commentTitle);
   artComments.appendChild(commentContainer);
+  form.appendChild(addInput);
+  form.appendChild(addText);
+  form.appendChild(addButton);
+  artAddComment.appendChild(addTitle);
+  artAddComment.appendChild(form);
   popSection.appendChild(artDetails);
   popSection.appendChild(artSummary);
   popSection.appendChild(artComments);
+  popSection.appendChild(artAddComment);
+  
 
   // Return pop-up node
   return popSection;
