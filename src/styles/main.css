@@ -249,6 +249,10 @@ main {
   font-size: 1.5rem;
 }
 
+.heart:hover {
+  color: var(--gold);
+}
+
 .likes-num > span {
   color: var(--heart-red);
   font-size: 1.1rem;
