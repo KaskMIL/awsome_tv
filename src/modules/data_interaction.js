@@ -44,7 +44,7 @@ const setComment = async (itemId, userName, userComment) => {
       'Content-type': 'application/json; charset=UTF-8',
     },
   });
-  const response = await result.json();
+  const response = await result.text();
   return response;
 };
 

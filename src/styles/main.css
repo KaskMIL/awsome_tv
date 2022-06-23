@@ -1,6 +1,11 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* 1rem = 10px */
+html {
+  font-size: 62.5%;
+}
+
 /* Color palette */
 :root {
   --dark-blue: #122c34;
@@ -21,6 +26,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
 }
 
 /* Header */
@@ -83,16 +89,17 @@ main {
   padding: 1.5rem;
   max-width: 80vw;
   color: var(--text-white);
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   left: 0;
   right: 0;
   margin: 0 auto;
+  box-shadow: -1px 5px 13px 6px rgba(0,0,0,0.75);
 }
 
 .pop-up .icon {
   align-self: flex-end;
   padding: 0.5rem 0.5rem 1rem 0.5rem;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .pop-up img {
@@ -102,6 +109,7 @@ main {
 
 .pop-up h2 {
   font-weight: 600;
+  font-size: 3.5rem;
   padding: 0.5rem 0;
   margin: 0;
 }
@@ -115,10 +123,10 @@ main {
 
 .details {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
 }
 
@@ -130,7 +138,7 @@ main {
 
 .details h3 {
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   color: var(--gold);
 }
 
@@ -138,13 +146,64 @@ main {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: flex-start;
+  column-gap: 1rem;
+  padding: 0 1rem;
+}
+
+.details ul li {
+  border: 0.1rem solid white;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
 }
 
 .summary {
   font-weight: 200;
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   text-align: justify;
   color: var(--gold);
+  padding-bottom: 1.5rem;
+}
+
+/* Comments */
+.comments {
+  padding: 1rem 0;
+  border-top: 0.1rem solid rgb(79, 79, 79);
+}
+
+.comments h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.commentContainer {
+  border: 0.1rem solid var(--text-white);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.commentContainer h4 {
+  font-weight: 400;
+  text-decoration: underline;
+  margin: 0;
+  padding: 0;
+}
+
+.commentContainer h5 {
+  font-weight: 200;
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0.5rem;
+}
+
+.commentContainer p {
+  font-weight: 300;
+  
+  margin: 0;
 }
 
 /* tv show container */

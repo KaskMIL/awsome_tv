@@ -8,13 +8,17 @@ const createPopUp = (id) => {
   const showTitle = document.createElement('h2');
   const artDetails = document.createElement('article');
   const divGenre = document.createElement('div');
-  const genreTitle = document.createElement('h3');
   const genreUl = document.createElement('ul');
   const divLang = document.createElement('div');
-  const langTitle = document.createElement('h3');
   const langUl = document.createElement('ul');
   const langLi = document.createElement('li');
   const artSummary = document.createElement('art');
+  const artComments = document.createElement('article');
+  const commentTitle = document.createElement('h3');
+  const commentContainer = document.createElement('div');
+  const nameComment = document.createElement('h4');
+  const dateComment = document.createElement('h5');
+  const comment = document.createElement('p');
 
   // set classes, id's and attributes
   popSection.classList.add('pop-up');
@@ -26,8 +30,6 @@ const createPopUp = (id) => {
   artSummary.classList.add('summary');
 
   // set data from API and common data
-  genreTitle.innerHTML = 'Genres:';
-  langTitle.innerHTML = 'Languages:';
   getData('https://api.tvmaze.com/shows').then((data) => {
     data.forEach((element) => {
       if (element.id === id) {
@@ -48,9 +50,7 @@ const createPopUp = (id) => {
   popSection.appendChild(crossIcon);
   popSection.appendChild(img);
   popSection.appendChild(showTitle);
-  divGenre.appendChild(genreTitle);
   divGenre.appendChild(genreUl);
-  divLang.appendChild(langTitle);
   langUl.appendChild(langLi);
   divLang.appendChild(langUl);
   artDetails.appendChild(divGenre);
