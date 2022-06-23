@@ -16,6 +16,7 @@ html {
   --text-white: #fff;
   --gold: #dbae25;
   --heart-red: rgb(223, 2, 2);
+  --count-hover: rgb(179, 4, 4);
 }
 
 * {
@@ -62,17 +63,27 @@ header {
 }
 
 .nav-item a {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: var(--text-white);
   text-decoration: none;
 }
 
+.nav-item a:hover {
+  color: var(--gold);
+}
+
+.nav-item {
+  color: var(--heart-red);
+}
+
 .nav-item:hover {
-  text-decoration: underline;
+  color: var(--count-hover);
 }
 
 #search {
-  padding: 0.2rem;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  border: 0;
 }
 
 /* pop-up */
