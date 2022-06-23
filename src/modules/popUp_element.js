@@ -96,7 +96,6 @@ const createPopUp = (id) => {
   popSection.appendChild(artComments);
   popSection.appendChild(artAddComment);
   
-
   // Return pop-up node
   return popSection;
 };
