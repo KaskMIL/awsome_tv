@@ -1,33 +1,72 @@
-import { API_URL, tvWrapper } from './constant.js';
-import { getData } from './api-util.js';
+import { API_URL, tvWrapper, INV_LIKE_URL } from './constant.js';
+import { getData, postData } from './api-util.js';
+import setPopup from './popUp_element.js';
 
-const displayAllData = (data) => {
-  data.forEach((element) => {
-    tvWrapper.innerHTML += `
-         <div class="card" id=${element.id}> 
-           
-           <img src=${element.image.medium} alt ="best" class="image"/>
-           <div class="show-info">
-            <p class="show-name"> ${element.name}</p>
-            <div class="like">
-            <i class="fa fa-heart heart" aria-hidden="true"></i>
-            <div class="likes-num">
-               <span> ${data.length}</span> Likes
-            </div>
-            </div>
- 
-           </div>
-           <button  type="button" class="comment-btn" > Comments </button>
-         </div>
-         `;
+export const displayAllData = (shows) => {
+  shows.forEach((show) => {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'card';
+    cardDiv.id = show.id;
+    const showImg = document.createElement('img');
+    showImg.src = show.image.original;
+    showImg.alt = 'show image';
+    showImg.className = 'image';
+    cardDiv.appendChild(showImg);
+
+    const showInfDiv = document.createElement('div');
+    showInfDiv.className = 'show-info';
+    cardDiv.appendChild(showInfDiv);
+    const showName = document.createElement('p');
+
+    showName.className = 'show-name';
+    showName.textContent = show.name;
+
+    showInfDiv.appendChild(showName);
+    const likeDiv = document.createElement('div');
+    likeDiv.className = 'like';
+
+    const likeP = document.createElement('p');
+    likeP.className = 'heart';
+    const likeIcon = document.createElement('i');
+    likeIcon.classList.add('fa', 'fa-heart');
+    likeP.appendChild(likeIcon);
+    likeP.addEventListener('click', (e) => {
+      e.target.classList.toggle('active');
+
+      const value = e.target.parentElement.parentElement.nextSibling.textContent;
+      e.target.parentElement.parentElement.nextSibling.textContent = parseInt(value, 10) + 1;
+      postData(INV_LIKE_URL, { item_id: show.id });
+    });
+    likeDiv.appendChild(likeP);
+
+    const liketext = document.createElement('p');
+    liketext.className = 'likes-num';
+
+    getData(INV_LIKE_URL).then((res) => {
+      const likes = res.filter((item) => item.item_id === show.id);
+      liketext.textContent = likes.length > 0 ? likes[0].likes : 0;
+    });
+
+    likeDiv.appendChild(liketext);
+
+    showInfDiv.appendChild(likeDiv);
+    const commentBtn = document.createElement('button');
+    commentBtn.className = 'comment-btn';
+    commentBtn.textContent = 'Comments';
+    commentBtn.setAttribute('type', 'button');
+    commentBtn.addEventListener('click', () => {
+      const { id } = commentBtn.parentElement;
+      console.log('coment displyed id', id);
+      setPopup(commentBtn);
+    });
+    cardDiv.appendChild(commentBtn);
+    tvWrapper.appendChild(cardDiv);
   });
 };
 
-const retriveAllData = () => new Promise((resolve) => {
+export const retriveAllData = () => new Promise((resolve) => {
   getData(API_URL).then((res) => {
     displayAllData(res);
     resolve();
   });
 });
-
-export default retriveAllData;
