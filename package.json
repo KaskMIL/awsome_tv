@@ -4,6 +4,7 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "build": "webpack",
     "dev": "webpack serve"
   },
@@ -17,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/KaskMIL/webpack/issues"
   },
-  "homepage": "https://github.com/KaskMIL/webpack#readme",
+  "homepage": "https://github.com/KaskMIL/awsome_tv",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
@@ -26,6 +27,7 @@
     "eslint-plugin-import": "^2.26.0",
     "hint": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.1",
     "sass": "^1.52.1",
     "sass-loader": "^13.0.0",
     "style-loader": "^3.3.1",
@@ -37,5 +39,9 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.1"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
+    "@fortawesome/fontawesome-free": "^6.1.1"
   }
 }
