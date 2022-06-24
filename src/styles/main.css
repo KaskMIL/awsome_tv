@@ -41,10 +41,15 @@ header {
 }
 
 .logo {
-  font-size: 1.5rem;
-  color: var(--text-white);
+  font-size: 2.5rem;
+  font-weight: 600;
   text-decoration: none;
   text-transform: capitalize;
+  color: var(--gold);
+}
+
+.logo:hover {
+  text-decoration: underline;
 }
 
 .nav {
@@ -63,7 +68,7 @@ header {
 }
 
 .nav-item a {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--text-white);
   text-decoration: none;
 }
@@ -288,12 +293,12 @@ textarea {
 
 .show-name {
   color: var(--text-white);
-  font-size: 1.1rem;
+  font-size: 1.8rem;
 }
 
 .heart {
   color: var(--heart-red);
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .heart:hover {
@@ -316,8 +321,12 @@ textarea {
   border-radius: 0.5rem;
   padding: 0.5rem;
   color: var(--dark-blue);
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
+}
+
+.comment-btn:hover {
+  cursor: pointer;
 }
 
 /* Footer */
