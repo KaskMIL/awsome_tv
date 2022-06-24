@@ -81,42 +81,43 @@ const comments = [
     id: 1,
     comments: [
       {
-        comment: 'Something to say', name: 'Tom'
+        comment: 'Something to say', name: 'Tom',
       },
       {
-        comment: 'Another thing to say', name: 'Worash'
+        comment: 'Another thing to say', name: 'Worash',
       },
       {
-        comment: 'Fabulous!', name: 'Mary'
-      }
-    ]
+        comment: 'Fabulous!', name: 'Mary',
+      },
+    ],
   },
   {
     id: 2,
     comments: [
       {
-        comment: 'Something to say', name: 'Tom'
-      }
-    ]
+        comment: 'Something to say', name: 'Tom',
+      },
+    ],
   },
   {
     id: 3,
-    comments: []
+    comments: [],
   },
 ];
 
 const getComments = (id, arrComment) => {
-  for (let i = 0; i < arrComment.length; i++) {
-    if(arrComment[i].id === id){
-      return arrComment[i]
+  for (let i = 0; i < arrComment.length; i += 1) {
+    if (arrComment[i].id === id) {
+      return arrComment[i];
     }
   }
-}
+  return 0;
+};
 
 const commentsCount = (id, arrComment) => {
   const comm = getComments(id, arrComment);
-  return comm.comments.length
-}
+  return comm.comments.length;
+};
 
 const getShowById = (id) => {
   const show = showList().find((sh) => sh.id === id);
@@ -147,5 +148,5 @@ const addLike = (id) => {
 };
 
 export {
-  showList, getShowById, getShowCount, getShowLikes, addLike, commentsCount, comments
+  showList, getShowById, getShowCount, getShowLikes, addLike, commentsCount, comments,
 };
