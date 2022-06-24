@@ -26,31 +26,13 @@ const createComment = (user, date, message) => {
   return commentContainer;
 };
 
-// Reduce function
-const commentReduce = (accum, current) => {
-  if (current.username) {
-    accum += 1;
-  }
-  return accum;
-}
-
 // Function to count comments
-const commentCounter = async (id, element) => {
-  await getComments(id).then((comments) => {
-    if(comments.error) {
-      return;
-    } else {
-      setTimeout(() => {
-        const sum = comments.reduce((sum, current) => {
-          if(current) {
-          return sum++;
-        }
-        },0)
-        return sum;
-      }, 3000);
-    }
-  })
-}
+const commentCounter = async (id) => {
+  const comments = await getComments(id);
+  if (comments.length > 0) {
+    return comments.length;
+  } return undefined;
+};
 
 const createPopUp = (id) => {
   // Declare and create elements
@@ -67,7 +49,6 @@ const createPopUp = (id) => {
   const artSummary = document.createElement('article');
   const artComments = document.createElement('article');
   const commentTitle = document.createElement('h3');
-  const commentSpan = document.createElement('span');
   const artAddComment = document.createElement('article');
   const addTitle = document.createElement('h3');
   const form = document.createElement('form');
@@ -119,6 +100,9 @@ const createPopUp = (id) => {
     if (data.error) {
       artComments.appendChild(commentTitle);
     } else {
+      const count = data.length;
+      commentCounter(id);
+      commentTitle.innerHTML = `Comments(${count})`;
       artComments.appendChild(commentTitle);
       data.forEach((comment) => {
         const element = createComment(comment.username, comment.creation_date, comment.comment);
@@ -189,9 +173,6 @@ const setPopup = async (node) => {
     if (e.target.nodeName === 'BUTTON' && e.target.classList.contains('comment-btn')) {
       const popUp = createPopUp(parentId);
       setCord(e.target.parentNode, popUp);
-      console.log(commentCounter(parseInt(e.target.parentNode.id)));
-      //console.log(e.target.parentNode.id)
-      //commentCounter(parseInt(e.target.parentNode.id))
       node.appendChild(popUp);
     }
     // Delete pop-up
