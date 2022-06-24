@@ -6,6 +6,7 @@ import {
   getData,
 } from './api-util.js';
 
+// Function to create comment element
 const createComment = (user, date, message) => {
   // Article variables
   const commentContainer = document.createElement('div');
@@ -23,6 +24,14 @@ const createComment = (user, date, message) => {
   commentContainer.appendChild(dateComment);
   commentContainer.appendChild(commentUser);
   return commentContainer;
+};
+
+// Function to count comments
+const commentCounter = async (id) => {
+  const comments = await getComments(id);
+  if (comments.length > 0) {
+    return comments.length;
+  } return undefined;
 };
 
 const createPopUp = (id) => {
@@ -91,6 +100,9 @@ const createPopUp = (id) => {
     if (data.error) {
       artComments.appendChild(commentTitle);
     } else {
+      const count = data.length;
+      commentCounter(id);
+      commentTitle.innerHTML = `Comments(${count})`;
       artComments.appendChild(commentTitle);
       data.forEach((comment) => {
         const element = createComment(comment.username, comment.creation_date, comment.comment);
