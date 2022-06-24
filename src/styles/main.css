@@ -41,10 +41,14 @@ header {
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: var(--text-white);
   text-decoration: none;
   text-transform: capitalize;
+}
+
+.logo:hover {
+  color: var(--gold);
 }
 
 .nav {
