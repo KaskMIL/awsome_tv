@@ -147,7 +147,7 @@ const updateComments = (id, nodeContainer) => {
     const title = document.querySelector('.comment-title');
     const count = data.length;
     commentCounter(id);
-    title.innerHTML = `Comments(${count})`
+    title.innerHTML = `Comments(${count})`;
     data.forEach((comment) => {
       const element = createComment(comment.username, comment.creation_date, comment.comment);
       nodeContainer.appendChild(element);
