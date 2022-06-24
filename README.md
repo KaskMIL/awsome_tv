@@ -12,6 +12,8 @@
 
 ## [Live Demo](https://kaskmil.github.io/awsome_tv/)
 
+## [Explination Video](https://drive.google.com/file/d/1iAxIK851N-umQC2Kfu2K_IGkwojz48L3/view?usp=sharing)
+
 
 ## Getting Started
 
