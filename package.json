@@ -41,6 +41,7 @@
     "webpack-dev-server": "^4.9.1"
   },
   "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "@fortawesome/fontawesome-free": "^6.1.1"
   }
 }
