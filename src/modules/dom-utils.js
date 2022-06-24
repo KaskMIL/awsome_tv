@@ -62,8 +62,6 @@ export const displayAllData = (shows) => {
     commentBtn.textContent = 'Comments';
     commentBtn.setAttribute('type', 'button');
     commentBtn.addEventListener('click', () => {
-      const { id } = commentBtn.parentElement;
-      console.log('coment displyed id', id);
       setPopup(commentBtn);
     });
     cardDiv.appendChild(commentBtn);

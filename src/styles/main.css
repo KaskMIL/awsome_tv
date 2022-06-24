@@ -97,7 +97,7 @@ main {
   flex-direction: column;
   align-items: center;
   background-color: var(--dark-blue);
-  padding: 1.5rem;
+  padding: 2rem;
   max-width: 80vw;
   color: var(--text-white);
   border-radius: 1.5rem;
@@ -179,7 +179,7 @@ main {
 
 /* Comments */
 .comments {
-  padding: 1rem 0;
+  padding: 1rem 0 0 0;
   border-top: 0.1rem solid rgb(79, 79, 79);
   width: 100%;
 }
@@ -192,8 +192,9 @@ main {
 
 .commentContainer {
   border: 0.1rem solid var(--text-white);
+  border-radius: 1rem;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .commentContainer h4 {
@@ -214,6 +215,41 @@ main {
 .commentContainer p {
   font-weight: 300;
   margin: 0;
+}
+
+/* Add comment section */
+.addComment {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.addComment h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.addComment form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.addComment form input,
+textarea {
+  width: 50%;
+  padding: 1rem;
+  border: 0.2rem solid black;
+  border-radius: 1rem;
+}
+
+.addComment form button {
+  padding: 0.5rem 1rem;
+  border: 0.1rem solid black;
+  border-radius: 1rem;
 }
 
 /* tv show container */
