@@ -1,11 +1,29 @@
 import {
   setComment,
-  getComments
+  getComments,
 } from './data_interaction.js';
 import {
-  getData
+  getData,
 } from './api-util.js';
 
+const createComment = (user, date, message) => {
+  // Article variables
+  const commentContainer = document.createElement('div');
+  const nameComment = document.createElement('h4');
+  const dateComment = document.createElement('h5');
+  const commentUser = document.createElement('p');
+  // Variables clsses
+  commentContainer.classList.add('commentContainer');
+  // Set content
+  nameComment.innerHTML = `${user}`;
+  dateComment.innerHTML = `${date}`;
+  commentUser.innerHTML = `${message}`;
+  // Create element
+  commentContainer.appendChild(nameComment);
+  commentContainer.appendChild(dateComment);
+  commentContainer.appendChild(commentUser);
+  return commentContainer;
+};
 
 const createPopUp = (id) => {
   // Declare and create elements
@@ -31,7 +49,7 @@ const createPopUp = (id) => {
 
   // set classes, id's and attributes
   popSection.classList.add('pop-up');
-  popSection.setAttribute('id', `${id}`)
+  popSection.setAttribute('id', `${id}`);
   crossIcon.classList.add('fa-solid', 'fa-xmark', 'icon');
   img.setAttribute('alt', 'Tv-show image');
   artDetails.classList.add('details');
@@ -52,6 +70,7 @@ const createPopUp = (id) => {
   commentTitle.innerHTML = 'Comments';
   addTitle.innerHTML = 'Add a comment!';
   addButton.innerHTML = 'Submit';
+  // Get data from show API and create element
   getData('https://api.tvmaze.com/shows').then((data) => {
     data.forEach((element) => {
       if (element.id === id) {
@@ -67,15 +86,16 @@ const createPopUp = (id) => {
       }
     });
   });
+  // Get data from app API and create element
   getComments(id).then((data) => {
-    if(data.error){
+    if (data.error) {
       artComments.appendChild(commentTitle);
     } else {
       artComments.appendChild(commentTitle);
       data.forEach((comment) => {
         const element = createComment(comment.username, comment.creation_date, comment.comment);
         artComments.appendChild(element);
-      }) 
+      });
     }
   });
 
@@ -102,39 +122,23 @@ const createPopUp = (id) => {
   return popSection;
 };
 
-const createComment = (user, date, message) => {
-  // Article variables
-  const commentContainer = document.createElement('div');
-  const nameComment = document.createElement('h4');
-  const dateComment = document.createElement('h5');
-  const commentUser = document.createElement('p');
-  // Variables clsses
-  commentContainer.classList.add('commentContainer');
-  // Set content
-  nameComment.innerHTML = `${user}`;
-  dateComment.innerHTML = `${date}`;
-  commentUser.innerHTML = `${message}`;
-  // Create element
-  commentContainer.appendChild(nameComment);
-  commentContainer.appendChild(dateComment);
-  commentContainer.appendChild(commentUser);
-  return commentContainer;
-}
-
+// Function to delete pop-ups when close
 const clearPopup = () => {
   const popup = document.querySelector('.pop-up');
   popup.remove();
 };
 
+// Function to update comments
 const updateComments = (id, nodeContainer) => {
   getComments(id).then((data) => {
     data.forEach((comment) => {
       const element = createComment(comment.username, comment.creation_date, comment.comment);
       nodeContainer.appendChild(element);
-    })
-  })
-}
+    });
+  });
+};
 
+// Function to get coord from node
 const getCord = (node) => {
   const rect = node.getBoundingClientRect();
   return {
@@ -142,14 +146,16 @@ const getCord = (node) => {
   };
 };
 
+// Function to set coord to the element
 const setCord = (parentNode, node) => {
   const coord = getCord(parentNode);
   node.style.top = `${coord.top - 90}px`;
 };
 
+// Function to create the pop-up when press button
 const setPopup = async (node) => {
   node.addEventListener('click', (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const parentId = parseInt(e.target.parentNode.id, 10);
     // Create pop-up
     if (e.target.nodeName === 'BUTTON' && e.target.classList.contains('comment-btn')) {
@@ -170,12 +176,11 @@ const setPopup = async (node) => {
       const comments = document.querySelectorAll('.commentContainer');
       if (userName.value && userComment.value) {
         setComment(parentid, userName.value, userComment.value).then(() => {
-          comments.forEach(element => {
-          element.remove()
+          comments.forEach((element) => {
+            element.remove();
+          });
+          updateComments(parentid, commentContainer);
         });
-        updateComments(parentid, commentContainer)
-        })
-        
       }
       userName.value = '';
       userComment.value = '';
