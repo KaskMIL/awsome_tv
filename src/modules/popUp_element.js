@@ -6,6 +6,7 @@ import {
   getData,
 } from './api-util.js';
 
+// Function to create comment element
 const createComment = (user, date, message) => {
   // Article variables
   const commentContainer = document.createElement('div');
@@ -25,6 +26,32 @@ const createComment = (user, date, message) => {
   return commentContainer;
 };
 
+// Reduce function
+const commentReduce = (accum, current) => {
+  if (current.username) {
+    accum += 1;
+  }
+  return accum;
+}
+
+// Function to count comments
+const commentCounter = async (id, element) => {
+  await getComments(id).then((comments) => {
+    if(comments.error) {
+      return;
+    } else {
+      setTimeout(() => {
+        const sum = comments.reduce((sum, current) => {
+          if(current) {
+          return sum++;
+        }
+        },0)
+        return sum;
+      }, 3000);
+    }
+  })
+}
+
 const createPopUp = (id) => {
   // Declare and create elements
   const popSection = document.createElement('section');
@@ -40,6 +67,7 @@ const createPopUp = (id) => {
   const artSummary = document.createElement('article');
   const artComments = document.createElement('article');
   const commentTitle = document.createElement('h3');
+  const commentSpan = document.createElement('span');
   const artAddComment = document.createElement('article');
   const addTitle = document.createElement('h3');
   const form = document.createElement('form');
@@ -161,6 +189,9 @@ const setPopup = async (node) => {
     if (e.target.nodeName === 'BUTTON' && e.target.classList.contains('comment-btn')) {
       const popUp = createPopUp(parentId);
       setCord(e.target.parentNode, popUp);
+      console.log(commentCounter(parseInt(e.target.parentNode.id)));
+      //console.log(e.target.parentNode.id)
+      //commentCounter(parseInt(e.target.parentNode.id))
       node.appendChild(popUp);
     }
     // Delete pop-up
