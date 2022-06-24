@@ -66,6 +66,7 @@ const createPopUp = (id) => {
   divLang.classList.add('languages');
   artSummary.classList.add('summary');
   artComments.classList.add('comments');
+  commentTitle.classList.add('comment-title');
   artAddComment.classList.add('addComment');
   addInput.setAttribute('id', 'userInput');
   addInput.setAttribute('type', 'text');
@@ -143,6 +144,10 @@ const clearPopup = () => {
 // Function to update comments
 const updateComments = (id, nodeContainer) => {
   getComments(id).then((data) => {
+    const title = document.querySelector('.comment-title');
+    const count = data.length;
+    commentCounter(id);
+    title.innerHTML = `Comments(${count})`
     data.forEach((comment) => {
       const element = createComment(comment.username, comment.creation_date, comment.comment);
       nodeContainer.appendChild(element);
